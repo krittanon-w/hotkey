@@ -43,13 +43,13 @@ If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 450 && A_TimeSinceP
 Exit
 
 ~LShift::
-If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 450 && A_TimeSincePriorHotkey > 125 ){
+If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 350 && A_TimeSincePriorHotkey > 150 ){
 	Send,{Home}
 }
 Exit
 
 ~RCtrl::
-If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 350 && A_TimeSincePriorHotkey > 125 ){
+If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 350 && A_TimeSincePriorHotkey > 150 ){
 	Send,{LWIN down}{UP down}{LWIN up}{UP up}
 }
 Exit
@@ -70,8 +70,6 @@ Exit
 	Send,{RIGHT}
 Exit
 
-; Only run when Windows Explorer or Desktop is active
-; Ctrl+Alt+N
 #IfWinActive ahk_class CabinetWClass
 ^!n::
 #IfWinActive ahk_class ExploreWClass
@@ -81,63 +79,43 @@ Exit
 #IfWinActive ahk_class WorkerW
 ^!n::
 
-    ; Get full path from open Explorer window
     WinGetText, FullPath, A
 
-    ; Clean up result
     StringReplace, FullPath, FullPath, `r, , all
     FullPath := RegExReplace(FullPath, "^.*`nAddress: ([^`n]+)`n.*$", "$1")
 
-    ; Change working directory
     SetWorkingDir, %FullPath%
 
-    ; An error occurred with the SetWorkingDir directive
     If ErrorLevel
         Return
 
-    ; Display input box for filename
     InputBox, _inputStr, New File, , , 400, 100
-    ;_inputOption := SubStr(_inputStr, -1)
-   ; MsgBox, %_inputOption%
-    ; User pressed cancel
+
     If ErrorLevel
         Return
 
-    ; Create file
     FileAppend, , %_inputStr%
 
-    ; Open the file in the appropriate editor
     Run %_inputStr%
 
     Return
 
 #IfWinActive
 
-;~RAlt & ~SC033::
 ~RAlt & ~9::
 	SendInput ^#{LEFT}
 	sleep,200
 Exit
 
-;~RAlt & ~SC034::
 ~RAlt & ~0::
 	SendInput ^#{RIGHT}
-	sleep,200	
+	sleep,200
 Exit
 
 
-;~LAlt & ~F::
-;If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 500 && A_TimeSincePriorHotkey > 125 ){
-;	v_cmd := 1
-;}
-;Else{
-;	v_cmd := 0
-;}
-;MsgBox, %v_cmd%
-;Exit
 
-
-~[::
+~LWin & ~j::
+MsgBox, new input
 Input, UserInput, V T5 L4, {enter}.{esc}{tab}, btw,otoh,fl,ahk,ca
 if (ErrorLevel = "Max")
 {
@@ -172,3 +150,4 @@ else if (UserInput = "ahk")
     Run, https://autohotkey.com
 return
 Exit
+
