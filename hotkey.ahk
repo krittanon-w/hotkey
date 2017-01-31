@@ -43,13 +43,13 @@ If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 450 && A_TimeSinceP
 Exit
 
 ~LShift::
-If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 350 && A_TimeSincePriorHotkey > 150 ){
+If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 450 && A_TimeSincePriorHotkey > 150 ){
 	Send,{Home}
 }
 Exit
 
 ~RCtrl::
-If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 350 && A_TimeSincePriorHotkey > 150 ){
+If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 450 && A_TimeSincePriorHotkey > 150 ){
 	Send,{LWIN down}{UP down}{LWIN up}{UP up}
 }
 Exit
