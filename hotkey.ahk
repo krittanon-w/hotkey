@@ -31,9 +31,9 @@ Exit
 	Run, F:\
 Exit
 
-;!^p::
-;	Run, C:\Users\simonxx\Pictures\Screenshots
-;Exit
+!^p::
+	Run, C:\Users\simonxx\Pictures\Screenshots
+Exit
 
 ~RShift::
 If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 450 && A_TimeSincePriorHotkey > 125 ){
