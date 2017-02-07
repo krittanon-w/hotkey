@@ -12,7 +12,7 @@ Exit
 Exit
 
 !^d::
-	Run, C:\Users\Apple\Downloads
+	Run, C:\Users\simonxx\Downloads
 Exit
 
 !^1::
@@ -31,10 +31,9 @@ Exit
 	Run, F:\
 Exit
 
-
-!^p::
-	Run, C:\Users\Apple\Pictures\Screenshots
-Exit
+;!^p::
+;	Run, C:\Users\simonxx\Pictures\Screenshots
+;Exit
 
 ~RShift::
 If( A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 450 && A_TimeSincePriorHotkey > 125 ){
@@ -151,3 +150,29 @@ else if (UserInput = "ahk")
 return
 Exit
 
+#IfWinActive ahk_class CabinetWClass
+#h::
+
+    WinGetText, FullPath, A
+
+    StringReplace, FullPath, FullPath, `r, , all
+    FullPath := RegExReplace(FullPath, "^.*`nAddress: ([^`n]+)`n.*$", "$1")
+
+    SetWorkingDir, %FullPath%
+    
+    Run "C:\Program Files\Git\git-bash.exe"
+
+    Return
+
+#IfWinActives
+
+#IfWinNotActive ahk_class CabinetWClass
+#h::
+
+    SetWorkingDir, D:\
+
+    Run "C:\Program Files\Git\git-bash.exe"
+
+    Return
+
+#IfWinActives
