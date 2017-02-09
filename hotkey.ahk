@@ -176,3 +176,23 @@ Exit
     Return
 
 #IfWinActives
+
+~LAlt & i::
+	Send,{BS down}{BS up}
+Exit
+
+~LAlt & j::
+	Send,{UP down}{UP up}
+Exit
+
+~LAlt & k::
+	Send,{DOWN down}{DOWN up}
+Exit
+
+~LAlt & h::
+	Send,{LEFT down}{LEFT up}
+Exit
+
+~LAlt & l::
+	Send,{RIGHT down}{RIGHT up}
+Exit
